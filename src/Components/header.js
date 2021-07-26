@@ -1,8 +1,8 @@
-import NavBar from "./NavBar"
+import React from 'react';
+import NavBar from "./NavBar/NavBar"
 
 const Header = () =>
 <header>
-    <h1>Sin Copete - Juegos Didácticos</h1>
     <NavBar/>
 </header>
 
