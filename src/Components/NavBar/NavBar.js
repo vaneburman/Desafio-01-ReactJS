@@ -17,6 +17,8 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
 
+import { useStore } from "../../store/StoreProvider";
+
 
 
 
@@ -39,10 +41,18 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () =>{
 
+  const { products } = useStore();
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const anchorRef = React.useRef(null);
+   
+  
+  let itemsTotales = products.reduce((sum, value) => (typeof value.cantidad == "number" ? sum + value.cantidad : sum), 0);
+      
+  console.log(itemsTotales);
+
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -71,6 +81,8 @@ const NavBar = () =>{
 
     prevOpen.current = open;
   }, [open]);
+
+  
 
 
     return(
@@ -110,6 +122,7 @@ const NavBar = () =>{
                 <SinCopete />
               </Typography>
               <Button color="inherit"><CartWidget /></Button>
+              <p>{itemsTotales}</p>
             </Toolbar>
           </AppBar>
         </div>
