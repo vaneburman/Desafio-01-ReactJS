@@ -40,17 +40,17 @@ const useStyles = makeStyles((theme) => ({
 
 
 const NavBar = () =>{
-
+  //del estilo
+  const classes = useStyles();
+  const anchorRef = React.useRef(null);
+  //del estado global
   const { products } = useStore();
 
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  const anchorRef = React.useRef(null);
-   
-  
+  //En esta línea voy sumando la cantidad (de los objetos dentro del array de products) de todos los artículos que se agregan al carrito (estado global)
   let itemsTotales = products.reduce((sum, value) => (typeof value.cantidad == "number" ? sum + value.cantidad : sum), 0);
-      
+  //chequeo que me los haya sumado   
   console.log(itemsTotales);
 
 
@@ -97,6 +97,7 @@ const NavBar = () =>{
                     aria-controls={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
                     onClick={handleToggle}
+                    style={{color:'white'}}
                   >
                     <MenuIcon />
                   </Button>
@@ -122,7 +123,7 @@ const NavBar = () =>{
                 <SinCopete />
               </Typography>
               <Button color="inherit"><CartWidget /></Button>
-              <p>{itemsTotales}</p>
+              <p style={{fontSize: '1rem'}}>{itemsTotales}</p>
             </Toolbar>
           </AppBar>
         </div>
