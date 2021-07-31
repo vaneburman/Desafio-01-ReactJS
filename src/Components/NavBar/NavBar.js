@@ -16,6 +16,7 @@ import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
+import { PrivateLinks } from './PrivateLinks';
 
 import { useStore } from "../../store/StoreProvider";
 
@@ -110,7 +111,7 @@ const NavBar = () =>{
                         <Paper>
                           <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                              <MyLink links={MenuItems}/>
+                              <MyLink links={MenuItems} privLinks={PrivateLinks}/>
                             </MenuList>
                           </ClickAwayListener>
                         </Paper>
