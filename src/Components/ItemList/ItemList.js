@@ -8,19 +8,14 @@ export default function ItemList(props) {
     console.log(props.lista)
 
     return (
-        <div style={{ width: '100%' }}>
-            <Box display="flex" flexDirection="row" p={1} m={1} bgcolor="background.paper"
-            >   
+        <div>
                 <ul>
                     {props.lista.map(producto=>{
                         return(
-                            <Box p={1} bgcolor="grey.300">
                                 <Item producto={producto} />
-                            </Box>
                         )
                     })}
                 </ul>
-            </Box>
         </div>
     )
 }

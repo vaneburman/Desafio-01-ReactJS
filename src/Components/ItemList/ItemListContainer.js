@@ -30,11 +30,7 @@ const ItemListContainer = () =>{
     return(
     <>
         <p style={{fontSize: 20, color: "black"}}> Lista </p>
-        <div style={{display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center'}}>
             <ItemList lista={productos}/>
-        </div>
     </>
     )
     };

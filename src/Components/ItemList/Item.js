@@ -27,7 +27,7 @@ export default function Item({producto}) {
 
     return (
             <li key={producto.id}>
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{backgroundColor: 'whitesmoke'}}>
                     <CardActionArea>
                         <CardMedia
                         className={classes.media}
