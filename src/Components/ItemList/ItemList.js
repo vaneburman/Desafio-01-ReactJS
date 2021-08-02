@@ -8,14 +8,15 @@ export default function ItemList(props) {
     console.log(props.lista)
 
     return (
-        <div>
+        
                 <ul>
+                    <Box display="flex" flexDirection="row"  justifyContent="center" alignItems="center" alignContent= 'space-between' p={1} m={1}>
                     {props.lista.map(producto=>{
                         return(
                                 <Item producto={producto} />
                         )
                     })}
+                    </Box>
                 </ul>
-        </div>
     )
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ItemList from './ItemList';
-import { ListaProductos } from './ListaProductos'
+import { ListaProductos } from './ListaProductos';
+import  Box  from '@material-ui/core/Box';
 
 
 
