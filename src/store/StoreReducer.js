@@ -6,6 +6,7 @@ const types = {
 //el estado inicial de mi carrito global es vacío
 const initialStore = {
     products: [ 
+
     ]
 }
 

@@ -1,14 +1,39 @@
-import ItemCount from "./ItemCount"
+import React from 'react';
+import { useEffect, useState } from 'react';
+import ItemList from './ItemList';
+import { ListaProductos } from './ListaProductos'
 
-const ItemListContainer = ({greeting}) =>{
+
+
+
+const ItemListContainer = () =>{
+
+    const [productos, setProductos]= useState([ListaProductos]);
+   
+      useEffect(() => {
+          const promesa = new Promise ((res, rej)=> {
+              setTimeout(()=> {
+                  res(ListaProductos)
+              }, 2000)
+          })
+          promesa.then((ListaProductos)=>{
+              console.log('OK');
+              setProductos(ListaProductos)
+          })
+      })
+
+    console.log(productos)
+    
+
+
+
     return(
     <>
-        <p style={{fontSize: 20, color: "black"}}> Lista: {greeting} </p>
+        <p style={{fontSize: 20, color: "black"}}> Lista </p>
         <div style={{display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center'}}>
-            <ItemCount stock={5} id={2}/>
-            <ItemCount stock={12} id={3}/>
+            <ItemList lista={productos}/>
         </div>
     </>
     )

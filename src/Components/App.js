@@ -1,8 +1,9 @@
 import React from 'react';
-import Header from "./Header";
+import Header from './header'
 import ItemListContainer from './ItemList/ItemListContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import StoreProvider from '../store/StoreProvider';
+
 
 const App = () => 
     <>
@@ -10,7 +11,7 @@ const App = () =>
             <React.Fragment>
                 <CssBaseline />
                 <Header/>
-                <ItemListContainer greeting="Aquí van las listas de Items"/>
+                <ItemListContainer />
             </React.Fragment>
         </StoreProvider>
     </>

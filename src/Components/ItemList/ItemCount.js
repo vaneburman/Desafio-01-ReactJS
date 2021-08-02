@@ -30,7 +30,7 @@ export default function ItemCount(props) {
         textAlign: "center"}
 
     //para actualizar y controlar el contador de productos    
-    const { stock, id } = props;
+    
     const [Count, setCount] = useState(0);
 
     //para ver si me agrega produtos al array products cuando cambia el estado Store.
@@ -40,7 +40,7 @@ export default function ItemCount(props) {
 
     //defino las funciones que voy a usar para el contador y para los botones
     const sumarContador = () => {
-        if (Count < stock) {
+        if (Count < props.stock) {
             setCount(Count + 1)
         } else {
             alert('La Cantidad supera el stock disponible');
@@ -59,7 +59,7 @@ export default function ItemCount(props) {
     const agregarCarrito = () => {
             dispatch(
                 { type: types.ADD_CART, payload: 
-                { id: id, cantidad: Count } 
+                { id: props.id, cantidad: Count } 
             }
             )
         }
