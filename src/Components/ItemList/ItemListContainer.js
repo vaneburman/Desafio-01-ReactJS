@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import ItemList from './ItemList';
 import { ListaProductos } from './ListaProductos';
-import  Box  from '@material-ui/core/Box';
+
 
 
 
@@ -30,7 +30,6 @@ const ItemListContainer = () =>{
 
     return(
     <>
-        <p style={{fontSize: 20, color: "black"}}> Lista </p>
             <ItemList lista={productos}/>
     </>
     )

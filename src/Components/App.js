@@ -4,6 +4,7 @@ import ItemListContainer from './ItemList/ItemListContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import StoreProvider from '../store/StoreProvider';
 import Container from '@material-ui/core/Container';
+import ItemDetailContainer from './ItemDetail/ItemDetailContainer';
 
 
 const App = () => 
@@ -14,6 +15,7 @@ const App = () =>
                 <Header/>
                 <Container maxWidth='lg'>
                     <ItemListContainer />
+                    <ItemDetailContainer />
                 </Container>
             </React.Fragment>
         </StoreProvider>
