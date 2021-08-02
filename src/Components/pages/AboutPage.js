@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Container } from '@material-ui/core';
+
 
 export default function AboutPage() {
     return (
-        <h1> Acerca de Sin Copete </h1>
+        <Container maxWidth='lg'>
+            <h1> Acerca de Sin Copete </h1>
+        </Container>
     )
 }

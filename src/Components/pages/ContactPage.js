@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Container } from '@material-ui/core';
 
 export default function ContactPage() {
     return (
-        <h1> Contacto </h1>
+        <Container maxWidth='lg'>
+            <h1> Contacto </h1>
+        </Container>
     )
 }
