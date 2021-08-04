@@ -5,33 +5,32 @@ import { ListaProductos } from './ListaProductos';
 
 
 
-
-
 const ItemListContainer = () =>{
 
-    const [productos, setProductos]= useState([ListaProductos]);
-   
+    const [productos, setProductos]= useState([]);
       useEffect(() => {
-          const promesa = new Promise ((res, rej)=> {
+          
+          const promesa = new Promise ((res)=> {
               setTimeout(()=> {
                   res(ListaProductos)
               }, 2000)
           })
-          promesa.then((ListaProductos)=>{
-              console.log('OK');
-              setProductos(ListaProductos)
+          promesa.then((prod)=>{
+              console.log('Acá se actualiza');
+              setProductos(prod)
           })
-      })
+      }, [])
+      console.log('acá van a estar los productos')
+      console.log(productos)
 
-    console.log(productos)
     
 
 
 
     return(
-    <>
-            <ItemList lista={productos}/>
-    </>
+        <>
+                <ItemList lista={productos}/>
+        </>
     )
     };
 

@@ -22,9 +22,6 @@ export default function Item({producto}) {
 
     const classes = useStyles();
 
-    console.log('este es el prop de item' + producto)
-    console.log(producto)
-
     return (
         <Box p={1}>
             <li key={producto.id}>
