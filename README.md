@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# App creada con Create React App - proyecto ecommerce "Sin Copete - Juegos Didácticos"
+
+* Estilos: [Material UI](https://material-ui.com/)
+* Imágenes, Información y paleta de colores: [Sin Copete](https://www.instagram.com/sin.copete/)
+
+![Captura de Pantalla](https://github.com/vaneburman/ecommerce-Burman/blob/Coderhouse/public/Readme1.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
