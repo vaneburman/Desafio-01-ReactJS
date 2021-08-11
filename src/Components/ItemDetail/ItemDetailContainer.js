@@ -1,36 +1,47 @@
 import React from 'react'
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { ListaProductos } from '../ItemList/ListaProductos';
 import ItemDetail from './ItemDetail';
+import Loading from '../Loading';
 
 
 export default function ItemDetailContainer() {
 
     const [producto, setProducto]= useState({});
-    const producto1 = ListaProductos[0]; //traigo un producto de ejemplo para maquetar
 
+    const { id } = useParams()
+
+   
     useEffect(() => {
+
         const getItem = new Promise ((res)=> {
             setTimeout(()=> {
-                res(producto1) 
+                res(ListaProductos.find(producto=>producto.id == id))
             }, 2000)
         }) 
         getItem.then((detalle)=>{
-            console.log('Acá se actualiza el detalle');
             setProducto(detalle)
         })
-    }, [])
-    console.log('acá van a estar los detalles')
+    }, [id])
+
     console.log(producto)
 
   
 
 
-
+    if(producto.id){
   return(
         <>
                 <ItemDetail detail={producto}/>
         </>
     )
-  }
+  } else {
+    return( 
+        <div style={{display: 'flex', alignItems:'center', justifyContent:'center', marginTop: 100}}>
+            <Loading />
+        </div>
+    )
+ }
+}

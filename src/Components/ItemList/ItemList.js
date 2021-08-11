@@ -10,12 +10,12 @@ export default function ItemList({lista}) {
     return (
         
                 <ul>
-                    <Box display="flex" flexDirection="row"  justifyContent="center" alignItems="center" alignContent= 'space-between' p={1} m={1}>
-                    {lista.map(producto=>{
-                        return(
-                                <Item producto={producto} />
-                        )
-                    })}
+                    <Box display="flex" flexDirection="row"  justifyContent="center" alignItems="center" flexWrap='wrap'>
+                        {lista.map(producto=>{
+                            return(
+                                    <Item producto={producto} />
+                            )
+                        })}
                     </Box>
                 </ul>
     )

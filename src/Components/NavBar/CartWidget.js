@@ -10,7 +10,7 @@ const CartWidget = ()=> {
 
     return(
     <>
-        <AiOutlineShoppingCart />
+        <AiOutlineShoppingCart fontSize='large' />
         
     </>
     )

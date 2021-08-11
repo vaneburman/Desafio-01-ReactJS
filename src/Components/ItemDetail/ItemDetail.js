@@ -12,12 +12,12 @@ export default function ItemDetail({detail}) {
             <Box display='flex' justifyContent='center'>
                 {(detail.id) && 
                     <div>
-                        <p> Carga de prueba del detalle del producto </p>
+                        <p>Item: {detail.id} {detail.title}</p>
                         <img src={detail.pictureURL} alt='Imagen del producto' />
                         <h1> {detail.title} </h1>
-                        <h2>{detail.description}</h2>
+                        <p style={{fontSize: '16px'}}>{detail.description}</p>
                         <h3> Precio: ${detail.price} </h3>
-                        <ItemCount id={detail.id} stock={detail.stock} />
+                        <ItemCount id={detail.id} stock={detail.stock} initial={0} />
                     </div>
                 }
             </Box>

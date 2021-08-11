@@ -8,14 +8,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Box  from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
-      maxWidth: 300,
+      maxWidth: 345
     },
     media: {
-      height: 300,
-    },
+      height: 200
+    }
   });
 
 export default function Item({producto}) {
@@ -23,30 +24,26 @@ export default function Item({producto}) {
     const classes = useStyles();
 
     return (
-        <Box p={1}>
-            <li key={producto.id}>
-                <Card className={classes.root} style={{backgroundColor: 'whitesmoke'}}>
-                <CardActionArea>
+        <Box>
+            <li key={producto.id} style={{listStyle: 'none', margin: '1rem', width: 300}}>
+                <Card className={classes.root}>
+                    <CardMedia
+                        className={classes.media}
+                        image={producto.pictureURL}
+                        title={producto.title}
+                    />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h3">
-                                    {producto.title}
+                            {producto.title}
                         </Typography>
                     </CardContent>
-                </CardActionArea>
-                    <CardMedia
-                            component="img"
-                            image={producto.pictureURL}
-                            title={producto.title}
-                            height='150'
-                            />
-                    <Typography variant="body1" color="textSecondary" component="p">
-                            {producto.description}
-                    </Typography>
-                    <CardActions style={{display: 'flex', alignItems: 'center', justifyContent:'center'}}>
+                    <CardActions>
                         <Typography variant="body1" color="textPrimary" component="h3">
                             Precio: $ {producto.price}
                         </Typography>
-                        <Button size="small" variant="contained" color="primary" style={{backgroundColor: '#34A512'}}>Ver más</Button>
+                        <Button size="small" style={{backgroundColor: '#34A512', color: 'white'}}>
+                            <Link to= {`/item/${producto.id}`} style={{textDecoration:'none', color:'white'}}>Ver más</Link>
+                        </Button>
                     </CardActions>
                 </Card>
             </li>

@@ -1,24 +1,14 @@
 import React from 'react';
-import Header from './header'
-import ItemListContainer from './ItemList/ItemListContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import StoreProvider from '../store/StoreProvider';
-import Container from '@material-ui/core/Container';
-import ItemDetailContainer from './ItemDetail/ItemDetailContainer';
-
+import { BrowserRouter } from 'react-router-dom'
+import AppRouter from './AppRouter/AppRouter';
 
 const App = () => 
     <>
-        <StoreProvider>
-            <React.Fragment>
+            <BrowserRouter>
                 <CssBaseline />
-                <Header/>
-                <Container maxWidth='lg'>
-                    <ItemListContainer />
-                    <ItemDetailContainer />
-                </Container>
-            </React.Fragment>
-        </StoreProvider>
+                <AppRouter />
+            </BrowserRouter>
     </>
 
 export default App
