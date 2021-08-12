@@ -1,7 +1,9 @@
 # App creada con Create React App - proyecto ecommerce "Sin Copete - Juegos Didácticos"
 
 * Estilos: [Material UI](https://material-ui.com/)
+Utilicé Material UI para darle un estilo homogéneo al ecommerce a través de componentes ya optimizados, incluyendo los iconos de la normativa y sus fonts predeterminadas. 
 * Imágenes, Información y paleta de colores: [Sin Copete](https://www.instagram.com/sin.copete/)
+* Se utilizó [React Router DOM](https://reactrouter.com/web/guides/quick-start) para el enrutamiento declarativo, a través de sus componentes y hooks.
 
 ![Captura de Pantalla](https://github.com/vaneburman/ecommerce-Burman/blob/Coderhouse/public/Readme1.png)
 
