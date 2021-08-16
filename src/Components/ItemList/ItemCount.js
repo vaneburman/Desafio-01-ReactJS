@@ -47,19 +47,23 @@ export default function ItemCount(props) {
             setCount(0);
                 }
 }
-   
+    const Confirmar = () => {
+        if(props.stock > 0){
+            props.onAdd(Count)
+        }
+    }
         
     
     //acá dispongo que el componente me muestre un solo botón si aún no agregué items al contador, y que me despliegue el contador propiamente dicho cuando ya tenga al menos un item para agregar al carrito.
 
-    if(Count === props.initial && props.stock > 0){
+    if(Count === props.initial & props.stock > 0){
     return (
         <div className={classes.root}>
             <Button onClick={sumarContador} variant="contained" color="primary" style={{backgroundColor: '#34A512'}}>Agregar</Button>
         </div>
         
     )
-    } else if (Count === props.initial && props.stock === 0){
+    } else if (Count === props.initial & props.stock === 0){
         return( 
         <div className={classes.root}>
             <Button variant="contained" disable > Sin Stock </Button>
@@ -79,7 +83,7 @@ export default function ItemCount(props) {
                         <Button onClick={sumarContador} size="small" variant="contained" color="primary" style={{backgroundColor: '#34A512'}}>+</Button>
                 </div>
                 <div>
-                    <Button onClick={()=> alert('El producto ha sido agregado al carrito')} variant="outlined" style= {{color: '#34A512', borderColor: '#34A512'}}>Agregar al Carrito</Button>
+                    <Button onClick={Confirmar} variant="outlined" style= {{color: '#34A512', borderColor: '#34A512'}} onClick={props.onAdd}>Confirmar</Button>
                 </div>
             </div>
         )
