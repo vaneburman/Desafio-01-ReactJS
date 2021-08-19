@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useContext } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import CartContext from '../../Context/CustomProvider'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function ItemCount(props) {
-
     
     //para los estilos
     const classes = useStyles();
@@ -50,9 +50,10 @@ export default function ItemCount(props) {
     const Confirmar = () => {
         if(props.stock > 0){
             props.onAdd(Count)
+           
         }
     }
-        
+       
     
     //acá dispongo que el componente me muestre un solo botón si aún no agregué items al contador, y que me despliegue el contador propiamente dicho cuando ya tenga al menos un item para agregar al carrito.
 
@@ -83,7 +84,7 @@ export default function ItemCount(props) {
                         <Button onClick={sumarContador} size="small" variant="contained" color="primary" style={{backgroundColor: '#34A512'}}>+</Button>
                 </div>
                 <div>
-                    <Button onClick={Confirmar} variant="outlined" style= {{color: '#34A512', borderColor: '#34A512'}} onClick={props.onAdd}>Confirmar</Button>
+                    <Button onClick={Confirmar} variant="outlined" style= {{color: '#34A512', borderColor: '#34A512'}} >Confirmar</Button>
                 </div>
             </div>
         )

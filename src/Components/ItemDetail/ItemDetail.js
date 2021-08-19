@@ -3,21 +3,34 @@ import React, {useState} from 'react';
 import ItemCount from '../ItemList/ItemCount';
 import {Link} from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import useCart from '../../Context/useCart';
+
 
 export default function ItemDetail({detail}) {
+
+    const { addItem } = useCart()
+    
 
     console.log('esta es la prop de itemdetail')
     console.log(detail)
     const [unidades, setUnidades] = useState()
-
+    
+   
     const onAdd = (cantidad) => {
-        console.log("State Uplifting")
-        console.log("Recibi la cantidad de un componente hijo")
-        console.log(cantidad)
         setUnidades(cantidad)
-        console.log(unidades)
+        
     }
 
+    // const validCart = () => {
+    //     const itemID = detail.id;
+    //     isInCart(itemID)
+    // }
+    const agregarItems = () => {
+        const cartItem = { item: detail, 
+            quantity: unidades
+        }
+        addItem(cartItem)
+    }
     //condicional para que no me renderice vacío y solo lo haga cuando haya producto cargado.
         return (
             <Box display='flex' justifyContent='center'>
@@ -32,7 +45,7 @@ export default function ItemDetail({detail}) {
                         {!!unidades ? 
                             <>
                                 <Link to='/cart'>
-                                    <Button variant="contained" color='primary' style={{backgroundColor: '#34A512'}} > 
+                                    <Button variant="contained" color='primary' style={{backgroundColor: '#34A512'}} onClick={agregarItems} > 
                                         Terminar mi compra 
                                     </Button>
                                 </Link>

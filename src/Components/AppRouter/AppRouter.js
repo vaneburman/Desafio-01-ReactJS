@@ -13,7 +13,7 @@ export default function AppRouter() {
                 <Route exact path='/' component={ItemListContainer} />
                 <Route path='/category/:id' component={ItemListContainer} />
                 <Route path='/item/:id' component={ItemDetailContainer} />
-                <Route path='/cart' component={CartPage} />
+                <Route exact path='/cart' component={CartPage} />
             </Switch>
         </>
     )
