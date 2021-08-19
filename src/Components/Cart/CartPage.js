@@ -1,17 +1,11 @@
-
-import {useContext} from 'react';
-import { CartContext } from '../../Context/CustomProvider'
 import Boton from './Boton';
 import { Container } from '@material-ui/core';
 import { TableContainer, Paper, TableCell, Table, TableHead, TableRow, TableBody, IconButton } from '@material-ui/core';
-
-// import useCart from '../../Context/useCart';
+import useCart from '../../Context/useCart';
 
 export default function CartPage() {
-    const { cart } = useContext(CartContext);
+    const { cart } = useCart();
     const columns = ['Producto', 'Categoria', 'Precio', 'Cantidad', '']
-
-
 
     return (
         <Container>
@@ -41,26 +35,6 @@ export default function CartPage() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            {/* <table style={{ border: '1px solid black'}}>
-                <thead>
-                    {columns.map(c => ( <th>{c}</th>))}
-                </thead>
-
-                <tbody>
-                    {cart.map((l)=>{
-                        return(
-                                <tr key={l.item.id}>
-                                        <td>{l.item.title}</td>
-                                        <td>{l.item.category}</td>
-                                        <td>{l.item.price}</td>
-                                        <td>{l.quantity}</td>
-                                        <Boton id={l.item.id} text={'Eliminar'}/>
-                                </tr>
-                            )}
-                        )
-                    }
-                </tbody>
-            </table> */}
         </Container>
     )
 }

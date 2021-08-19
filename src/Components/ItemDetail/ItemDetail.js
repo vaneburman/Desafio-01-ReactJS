@@ -21,17 +21,13 @@ export default function ItemDetail({detail}) {
         
     }
 
-    // const validCart = () => {
-    //     const itemID = detail.id;
-    //     isInCart(itemID)
-    // }
     const agregarItems = () => {
         const cartItem = { item: detail, 
             quantity: unidades
         }
         addItem(cartItem)
     }
-    //condicional para que no me renderice vacío y solo lo haga cuando haya producto cargado.
+ 
         return (
             <Box display='flex' justifyContent='center'>
                 {(detail.id) && 
