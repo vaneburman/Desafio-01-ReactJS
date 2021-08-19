@@ -26,7 +26,9 @@ const CustomProvider = ({children}) => {
 }
 
     const removeItem = (itemID) => {
-        console.log('remove item')
+            let index = cart.findIndex((obj => obj.item.id == itemID));
+            cart.splice(index, 1);
+            setCart([...cart]);
     }
 
     const clear = () => {
