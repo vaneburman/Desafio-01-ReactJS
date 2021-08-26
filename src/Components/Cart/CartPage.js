@@ -9,13 +9,8 @@ export default function CartPage() {
     const { cart } = useCart();
     const columns = ['Producto', 'Categoria', 'Precio', 'Cantidad', '']
 
-    //En esta línea voy sumando la cantidad (de los objetos dentro del array de products) de todos los artículos que se agregan al carrito (estado global)
-
     let precioTotal = cart.reduce((sum, value) => 
       (typeof value.item.price == "number" ? sum + value.item.price : sum),0)
-
-    //chequeo que me los haya sumado   
-    console.log(precioTotal);
 
     return (
         <>

@@ -9,10 +9,6 @@ import useCart from '../../Context/useCart';
 export default function ItemDetail({detail}) {
 
     const { addItem } = useCart()
-    
-
-    console.log('esta es la prop de itemdetail')
-    console.log(detail)
     const [unidades, setUnidades] = useState()
     
    

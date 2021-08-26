@@ -1,10 +1,8 @@
-import { Container } from '@material-ui/core';
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import ItemList from './ItemList';
-import { ListaProductos } from './ListaProductos';
+import { firestore } from '../../firebase';
 
 
 
@@ -13,31 +11,41 @@ const ItemListContainer = () =>{
     const [productos, setProductos]= useState([]);
     const {id} = useParams(); 
 
-    console.log('esto es params en list')
-    console.log(id)
       useEffect(() => {
-          
-          const promesa = new Promise ((res)=> {
-              setProductos([]);
-              setTimeout(()=> {
-                if(id){
-                  res(ListaProductos.filter(p => p.category === id))
-                }
-                else {
-                    res(ListaProductos)
-                }
-            }
-              , 2000)
-          })
-          promesa.then((prod)=>{
-              
-              setProductos(prod)
-          })
-      }, [id])
-      
-      console.log(productos)
+        const collection = firestore.collection('productos')
 
-    
+        if(!id){
+          
+        const query = collection.get()
+
+        query.then((resultados)=>{
+
+            const listado = []
+            resultados.forEach((documento) => {
+                const id = documento.id
+                const data = documento.data()
+                const data_final = {id, ...data}
+
+                listado.push(data_final)
+
+            })
+            setProductos(listado)
+        })
+
+      } else {
+          const queryFiltrado = collection.where("category", "==", id).get()
+          queryFiltrado.then((categoria)=>{
+              const listadoFiltrado = []
+              categoria.forEach((documento) => {
+                  const id = documento.id;
+                  const data = documento.data();
+                  const data_final = {id, ...data}
+                  listadoFiltrado.push(data_final)
+          })
+          setProductos(listadoFiltrado)
+        })}}, [id])
+      
+
 
       if(productos.length!== 0){
 
