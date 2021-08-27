@@ -1,18 +1,19 @@
 import React from 'react';
 import Header from "../Components/header";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import StoreProvider from '../store/StoreProvider';
+import CustomProvider from '../Context/CustomProvider';
+import AuthProvider from '../auth/AuthProvider';
 
 
 const App = () => 
-    <>
-            <StoreProvider>
+    <AuthProvider>
+            <CustomProvider>
                 <React.Fragment>
                     <CssBaseline />
                     <Header/>
                 </React.Fragment>
-            </StoreProvider>
-    </>
+            </CustomProvider>
+    </AuthProvider>
 
 export default App
 

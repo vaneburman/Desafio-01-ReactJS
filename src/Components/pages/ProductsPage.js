@@ -5,8 +5,7 @@ import { Container } from '@material-ui/core';
 export default function ProductsPage() {
     return (
         <Container maxWidth='lg'>
-            <h1> Productos </h1>
-            <ItemListContainer greeting="Aquí van las listas de Items"/>
+            <ItemListContainer />
         </Container>
     )
 }

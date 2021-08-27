@@ -4,7 +4,7 @@ import MyLink from './MyLink';
 import SinCopete from './SinCopete';
 import './NavBar.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { MenuItems } from './MenuItems'
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -16,9 +16,10 @@ import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
-import { PrivateLinks } from './PrivateLinks';
+import useCart from '../../Context/useCart';
+import { Box } from '@material-ui/core';
+import LoginMenu from './LoginMenu';
 
-import { useStore } from "../../store/StoreProvider";
 
 
 
@@ -41,19 +42,23 @@ const useStyles = makeStyles((theme) => ({
 
 
 const NavBar = () =>{
+  const {cart} = useCart();
   //del estilo
   const classes = useStyles();
   const anchorRef = React.useRef(null);
-  //del estado global
-  const { products } = useStore();
+
+
 
   const [open, setOpen] = React.useState(false);
 
-  //En esta línea voy sumando la cantidad (de los objetos dentro del array de products) de todos los artículos que se agregan al carrito (estado global)
-  let itemsTotales = products.reduce((sum, value) => (typeof value.cantidad == "number" ? sum + value.cantidad : sum), 0);
-  //chequeo que me los haya sumado   
-  console.log(itemsTotales);
+ 
+    //En esta línea voy sumando la cantidad (de los objetos dentro del array de products) de todos los artículos que se agregan al carrito (estado global)
 
+    let itemsTotales = cart.reduce((sum, value) => 
+      (typeof value.quantity == "number" ? sum + value.quantity : sum),0)
+
+    //chequeo que me los haya sumado   
+    console.log(itemsTotales);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -111,7 +116,7 @@ const NavBar = () =>{
                         <Paper>
                           <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                              <MyLink links={MenuItems} privLinks={PrivateLinks}/>
+                              <MyLink />
                             </MenuList>
                           </ClickAwayListener>
                         </Paper>
@@ -120,11 +125,18 @@ const NavBar = () =>{
                   </Popper>
                 </div>
               </IconButton>
+              <LoginMenu />
               <Typography variant='h6' className={classes.title}>
                 <SinCopete />
               </Typography>
-              <Button color="inherit"><CartWidget /></Button>
-              <p style={{fontSize: '1rem'}}>{itemsTotales}</p>
+                <Box p={1} flexShrink={1} >
+                  <CartWidget />
+                </Box>
+                {itemsTotales > 0 &&
+                  <Box p={1} flexShrink={1} >
+                    <p>{itemsTotales}</p>
+                  </Box>
+                }
             </Toolbar>
           </AppBar>
         </div>

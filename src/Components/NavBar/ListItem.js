@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 
 
-const PrivateLinks = ()=> {
+const ListItem = ()=> {
 
 
     const anchorRef = React.useRef(null);
@@ -24,18 +24,28 @@ const PrivateLinks = ()=> {
     return(
         <>
             <MenuItem onClick={handleClose}>
-                <NavLink to='/dashboard' className='nav-link'>
-                   Dashboard
+                <NavLink to='/' className='nav-link'>
+                   Inicio
                 </NavLink>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-                <NavLink to='/categories' className='nav-link'>
-                  Categorias
+                <NavLink to='/About' className='nav-link'>
+                  Quienes Somos
                 </NavLink>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-                <NavLink to='/tableproducts' className='nav-link'>
-                   Productos
+                <NavLink to='/category/mesa' className='nav-link'>
+                   Juegos de Mesa
+                </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+                <NavLink to='/category/didacticos' className='nav-link'>
+                   Juegos didácticos
+                </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+                <NavLink to='/Contact' className='nav-link'>
+                   Contacto
                 </NavLink>
             </MenuItem>
         </>
@@ -44,4 +54,4 @@ const PrivateLinks = ()=> {
 
     }
 
-    export default PrivateLinks
+    export default ListItem

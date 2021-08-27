@@ -1,10 +1,13 @@
 import React from 'react'; 
-import { Container } from '@material-ui/core';
+import ItemListContainer from '../ItemList/ItemListContainer';
+import useAuth from '../../auth/useAuth';
 
-export default function HomePage() {
-    return (
-        <Container maxWidth='lg'>
-            <h1> Home </h1>
-        </Container>
-    )
+export default function HomePage() { 
+    const auth = useAuth()
+    console.log(auth)
+ 
+          return  (
+            <>
+                <ItemListContainer />
+            </>)
 }
