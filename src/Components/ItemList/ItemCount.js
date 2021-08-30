@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ItemCount(props) {
     
-    //para los estilos
+   
     const classes = useStyles();
     const caja = {
         width: '4rem',

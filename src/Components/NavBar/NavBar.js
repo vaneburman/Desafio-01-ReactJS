@@ -12,12 +12,11 @@ import useCart from '../../Context/useCart';
 const NavBar = () =>{
     const {cart} = useCart();
 
-    //En esta línea voy sumando la cantidad (de los objetos dentro del array de products) de todos los artículos que se agregan al carrito (estado global)
 
     let itemsTotales = cart.reduce((sum, value) => 
       (typeof value.quantity == "number" ? sum + value.quantity : sum),0)
 
-    //chequeo que me los haya sumado   
+  
     console.log(itemsTotales);
   
     return(
