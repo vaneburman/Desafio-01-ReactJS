@@ -1,17 +1,23 @@
+import {useState} from 'react';
 import Boton from './Boton';
 import { Container, Button } from '@material-ui/core';
 import { TableContainer, Paper, TableCell, Table, TableHead, TableRow, TableBody, IconButton } from '@material-ui/core';
 import useCart from '../../Context/useCart';
 import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import OrdenContainer from './OrdenContainer';
 
 export default function CartPage() {
     const { cart } = useCart();
     const columns = ['Producto', 'Categoria', 'Precio', 'Cantidad', '']
+    const [checkout, setCheckout] = useState(false)
 
     let precioTotal = cart.reduce((sum, value) => 
       (typeof value.item.price == "number" ? sum + value.item.price : sum),0)
 
+    const handleCheckout = ()=>{
+        setCheckout(true)
+    } 
     return (
         <>
         {(cart.length>0) ? 
@@ -52,6 +58,11 @@ export default function CartPage() {
                             Seguir Comprando
                         </Button>
                     </Link> 
+                    <Button variant="contained" color='primary' style={{backgroundColor: '#34A512'}} onClick={handleCheckout}>Checkout</Button>
+                    {checkout &&
+                        <OrdenContainer total={precioTotal} />
+                    }
+                    
             </Container>
         :
         <Container> 
