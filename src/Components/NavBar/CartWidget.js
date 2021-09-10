@@ -11,7 +11,7 @@ const CartWidget = ()=> {
     return(
     <>
         <Link to='/cart' style={{color: 'white'}}>
-            <AiOutlineShoppingCart fontSize='large' />
+            <AiOutlineShoppingCart />
         </Link>
         
     </>

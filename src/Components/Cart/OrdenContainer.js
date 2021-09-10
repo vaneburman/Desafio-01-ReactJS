@@ -5,7 +5,8 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import Loading from '../Loading';
 import Box from '@material-ui/core/Box';
-import OrdenDetail from './OrdenDetail';
+
+import Checkout from './Checkout';
 
 export default function OrdenContainer({total}) {
     const {cart} = useCart()
@@ -42,7 +43,7 @@ export default function OrdenContainer({total}) {
     return (
         <Box display='flex' justifyContent='center'>
             {idOC.length>0 ?
-                <OrdenDetail id={idOC} />
+                <Checkout id={idOC} />
             :
                 <Loading />
             }

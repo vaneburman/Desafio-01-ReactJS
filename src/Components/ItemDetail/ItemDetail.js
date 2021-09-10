@@ -4,13 +4,25 @@ import ItemCount from '../ItemList/ItemCount';
 import {Link} from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import useCart from '../../Context/useCart';
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles((theme) => ({
+    box:{
+        display: 'flex',
+        justifyContent: 'center' 
+    },
+    button: {
+        backgroundColor: '#34A512'
+    },
+
+}))
 
 export default function ItemDetail({detail}) {
 
     const { addItem } = useCart()
     const [unidades, setUnidades] = useState()
-    
+    const classes = useStyles()
    
     const onAdd = (cantidad) => {
         setUnidades(cantidad)
@@ -25,10 +37,9 @@ export default function ItemDetail({detail}) {
     }
  
         return (
-            <Box display='flex' justifyContent='center'>
+            <Box className={classes.box}>
                 {(detail.id) && 
                     <div>
-                        <p>Item: {detail.id} {detail.title}</p>
                         <img src={detail.pictureURL} alt='Imagen del producto' />
                         <h1> {detail.title} </h1>
                         <p style={{fontSize: '16px'}}>{detail.description}</p>
@@ -37,7 +48,7 @@ export default function ItemDetail({detail}) {
                         {!!unidades ? 
                             <>
                                 <Link to='/cart'>
-                                    <Button variant="contained" color='primary' style={{backgroundColor: '#34A512'}} onClick={agregarItems} > 
+                                    <Button variant="contained" color='primary' className={classes.button} onClick={agregarItems} > 
                                         Terminar mi compra 
                                     </Button>
                                 </Link>

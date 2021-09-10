@@ -3,11 +3,23 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import ItemList from './ItemList';
 import { firestore } from '../../firebase';
+import { Container} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+    content: {
+        flexGrow: 1,
+        height: '100vh',
+        justifyContent: 'center'
+      },
+      
+}))
 
 
 
 const ItemListContainer = () =>{
-
+    const classes = useStyles()
     const [productos, setProductos]= useState([]);
     const {id} = useParams(); 
 
@@ -47,17 +59,14 @@ const ItemListContainer = () =>{
       
 
 
-      if(productos.length!== 0){
-
+      if(productos.length!== 0 ){
         return(
-            <>
-                
-                
+            <Container maxWidth="lg" className={classes.content}>
                     <ItemList lista={productos}/>
                 
-            </>
+            </Container>
         )
-        }
+        } 
      else {
         return( 
             <div style={{display: 'flex', alignItems:'center', justifyContent:'center', marginTop: 100}}>
