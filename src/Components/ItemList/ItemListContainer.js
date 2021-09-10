@@ -3,17 +3,22 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import ItemList from './ItemList';
 import { firestore } from '../../firebase';
-import { Container} from '@material-ui/core';
+import { Container, Divider} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Slider from '../Pages/Slider';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     content: {
+
+        justifyContent: "center",
+        alignItems: "center",
         flexGrow: 1,
         height: '100vh',
-        justifyContent: 'center'
       },
-      
+    text: {
+        marginTop: '2rem'
+    }
 }))
 
 
@@ -57,16 +62,27 @@ const ItemListContainer = () =>{
           setProductos(listadoFiltrado)
         })}}, [id])
       
+        console.log(productos)
 
-
-      if(productos.length!== 0 ){
+      if(productos.length!== 0 && !id){
         return(
             <Container maxWidth="lg" className={classes.content}>
+                    <Slider productos={productos}/>
+                    <Divider />
+                    <Typography component="h1" variant="h6" noWrap align='center' className={classes.text}> Productos </Typography>
                     <ItemList lista={productos}/>
                 
             </Container>
         )
         } 
+        else if (productos.length!== 0 && !!id){
+            return(
+                <Container maxWidth="lg" className={classes.content}>
+                        <ItemList lista={productos}/>
+                    
+                </Container>
+            )
+        }
      else {
         return( 
             <div style={{display: 'flex', alignItems:'center', justifyContent:'center', marginTop: 100}}>

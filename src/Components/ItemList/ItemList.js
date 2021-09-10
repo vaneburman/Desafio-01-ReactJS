@@ -1,20 +1,23 @@
 import React from 'react';
 import Item from './Item';
-import Box from '@material-ui/core/Box';
+import { Grid } from '@material-ui/core';
 
 
 export default function ItemList({lista}) {
-
-    return (
+ 
+    // const ultimosprod = lista.splice(-4)
+    
+        return (
         
-                <ul>
-                    <Box display="flex" flexDirection="row"  justifyContent="center" alignItems="center" flexWrap='wrap' style={{marginTop: '3rem'}}>
-                        {lista.map(producto=>{
-                            return(
-                                    <Item producto={producto} />
-                            )
-                        })}
-                    </Box>
-                </ul>
-    )
-}
+            <ul>
+                <Grid container spacing={4} >
+                    {lista.map(producto=>{
+                        return(
+                                <Item producto={producto} />
+                        )
+                    })}
+                </Grid>
+            </ul>
+        )
+    }
+    
