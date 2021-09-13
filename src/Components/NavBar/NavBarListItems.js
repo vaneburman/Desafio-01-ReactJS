@@ -13,20 +13,30 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+
 const useStyles = makeStyles(theme => ({
   nested: {
     paddingLeft: theme.spacing(4),
   }, 
+  nestedLinks: {
+    textDecoration: 'none',
+    color: 'black',
+    paddingLeft: theme.spacing(4)
+  },
   linkbtn: {
     textDecoration: 'none',
-  }
+  },
+  iconButton: {
+    marginLeft: 0.5,
+
+  },
 }));
 
 function ListItemLink(props) {
 
   const { icon, primary, to, nested = false } = props;
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -45,11 +55,14 @@ function ListItemLink(props) {
     to: '/category/didacticos'
     }
   ]
+
+  
+  
   if(nested){
     return (
       <li>
         <ListItem button component={renderLink} onClick={handleClick}>
-          {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+          {icon ? <ListItemIcon className={classes.iconButton}>{icon}</ListItemIcon> : null}
           <ListItemText primary={primary} />
               {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
@@ -60,7 +73,7 @@ function ListItemLink(props) {
                   return (
                     <ListItem button className={classes.nested}>
                         <Link to={cat.to} className={classes.linkbtn}>
-                            <ListItemText primary={cat.secondaryTitle} />
+                            <ListItemText primary={cat.secondaryTitle} className={classes.nestedLinks}/>
                         </Link>
                     </ListItem>
                       )
@@ -75,7 +88,7 @@ function ListItemLink(props) {
   else {
     return(
       <ListItem button component={renderLink}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        {icon ? <ListItemIcon className={classes.iconButton}>{icon}</ListItemIcon> : null}
       <ListItemText primary={primary} />
     </ListItem>
     )
@@ -85,7 +98,7 @@ function ListItemLink(props) {
 
 export const NavBarListItems = (
   <div>
-    <ListItemLink to="/" primary="Shop" icon={<StorefrontIcon />} nested secondary={['Juegos de Mesa', 'Juegos Didácticos']}/>
+    <ListItemLink primary="Shop" icon={<StorefrontIcon />} nested secondary={['Juegos de Mesa', 'Juegos Didácticos']}/>
   </div>
 );
 

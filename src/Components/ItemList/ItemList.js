@@ -5,12 +5,11 @@ import { Grid } from '@material-ui/core';
 
 export default function ItemList({lista}) {
  
-    // const ultimosprod = lista.splice(-4)
     
         return (
         
             <ul>
-                <Grid container spacing={4} >
+                <Grid container spacing={8} >
                     {lista.map(producto=>{
                         return(
                                 <Item producto={producto} />

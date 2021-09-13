@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { firestore } from '../../firebase';
 import ItemDetail from './ItemDetail';
 import Loading from '../Loading';
+import { Grid } from '@material-ui/core';
+
 
 
 export default function ItemDetailContainer() {
@@ -34,15 +36,15 @@ export default function ItemDetailContainer() {
 
     if(!!producto.id){
   return(
-        <>
+        <Grid container justify='center' spacing={1}>
                 <ItemDetail detail={producto}/>
-        </>
+        </Grid>
     )
   } else {
     return( 
-        <div style={{display: 'flex', alignItems:'center', justifyContent:'center', marginTop: 100}}>
+        <Grid item justify='center' >
             <Loading />
-        </div>
+        </Grid>
     )
  }
 }

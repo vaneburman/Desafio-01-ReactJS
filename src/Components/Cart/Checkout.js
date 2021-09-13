@@ -14,6 +14,8 @@ import Review from './Review';
 import {firestore} from '../../firebase';
 import Loading from '../Loading';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import OrdenContainer from './OrdenContainer';
+import useCart from '../../Context/useCart';
 
 
 function Copyright() {
@@ -67,30 +69,28 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Tus Datos', 'Detalles de pago', 'Orden de Compra'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
-export default function Checkout(id) {
+export default function Checkout() {
   const classes = useStyles()
-  const [compra, setCompra] = useState({});
-
+  const {cart} = useCart();
   const [activeStep, setActiveStep] = useState(0);
+  const [error, setError] = useState(false)
 
-    useEffect(()=> {
-        const OC = firestore.collection('OC').doc(id.id).get()
-        OC.then(res => setCompra(res.data()))
-    }, [])
-
+  const handleError = (formError)=>{
+    setError(formError)
+  }
+  const getStepContent= (step) => {
+    switch (step) {
+      case 0:
+        return <AddressForm handleError={handleError}/>;
+      case 1:
+        return <PaymentForm />;
+      case 2:
+        return <Review />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
   
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -99,6 +99,11 @@ export default function Checkout(id) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const handleResetForm = ()=> {
+    setActiveStep(0);
+    // setError()
+  }
 
   return (
     <>
@@ -117,18 +122,7 @@ export default function Checkout(id) {
           </Stepper>
           <>
             {activeStep === steps.length ? (
-              <>
-                { !!compra ? 
-                <div className={classes.root}>
-                    <Alert severity="success">
-                        <AlertTitle>Success</AlertTitle>
-                        Compra Finalizada exitosamente — <strong>ID: {id.id}, Total: $ {compra.TotalPrice}</strong>
-                    </Alert>
-                </div>
-            :
-                <Loading />
-            }
-              </>
+              <OrdenContainer />
             ) : (
               <>
                 {getStepContent(activeStep)}
@@ -138,6 +132,7 @@ export default function Checkout(id) {
                       Back
                     </Button>
                   )}
+                  {!error ? (
                   <Button
                     variant="contained"
                     color="primary"
@@ -146,6 +141,18 @@ export default function Checkout(id) {
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
+                  ) : (
+                    <>
+                      <Alert severity="error">
+                          <AlertTitle>Error</AlertTitle>
+                          Ingrese sus datos correctamente para continuar 
+                      </Alert>
+                      <Button onClick={handleResetForm} className={classes.button}>
+                        Atrás
+                      </Button>
+                    </>
+                  )
+                  }
                 </div>
               </>
             )}

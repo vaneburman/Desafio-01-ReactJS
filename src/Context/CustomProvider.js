@@ -7,7 +7,7 @@ const { Provider } = CartContext;
 const CustomProvider = ({children}) => {
 
     const [cart, setCart] = useState([]);
-    
+    const [totalPrice, setTotalPrice] = useState()
     const isInCart = (id) => {
         return cart.some(obj => obj.item.id === id)
     }
@@ -36,12 +36,27 @@ const CustomProvider = ({children}) => {
     }
 
     
+   
+
+    const totalCart = ()=> {
+        console.log('este es el cart en total cart', cart)
+        let total = cart.reduce((sum, value) => 
+                 (typeof value.item.price == "number" ? sum + (value.item.price * value.quantity) : sum),0
+    )
+        setTotalPrice(total)
+        console.log('este es el total de setTotal', totalPrice, 'este es total antes del set', total)
+    }
+        
+    
+    
     const ContextValue = {
         cart,
         addItem,
         removeItem,
         clear,
-        isInCart
+        isInCart,
+        totalCart,
+        totalPrice
     }
  
 

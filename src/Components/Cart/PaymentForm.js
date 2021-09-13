@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function PaymentForm() {
+  
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -13,13 +14,19 @@ export default function PaymentForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TextField required id="cardName" label="Nombre del titular de la tarjeta" fullWidth autoComplete="cc-name" />
+          <TextField 
+          required 
+          id="cardName" 
+          label="Nombre del titular de la tarjeta" 
+          fullWidth 
+          autoComplete="cc-name" />
         </Grid>
         <Grid item xs={12}>
           <TextField
             required
             id="cardNumber"
             label="Número de Tarjeta de crédito/débito"
+            helperText="Complete con el nombre tal como figura en su tarjeta"
             fullWidth
             autoComplete="cc-number"
           />
@@ -32,7 +39,8 @@ export default function PaymentForm() {
             required
             id="cvv"
             label="CVV"
-            helperText="Código de seguridad"
+            helperText="Código de seguridad de 3 dígitos"
+            type="password"
             fullWidth
             autoComplete="cc-csc"
           />

@@ -1,17 +1,19 @@
 import React from 'react'
 import ItemDetailContainer from '../ItemDetail/ItemDetailContainer';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
-    content: {
+    root: {
         flexGrow: 1,
         height: '100vh',
         justifyContent: 'center',
-        alignItems: 'center'
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: 280,
+            },
       },
-      appBarSpacer: theme.mixins.toolbar,
+    appBarSpacer: theme.mixins.toolbar
       
 }))
 export default function DetailPage() {
@@ -19,13 +21,10 @@ export default function DetailPage() {
     return (
         <>
             <div className={classes.appBarSpacer} />
-            <Grid container justify = "center">   
-                    <Container maxWidth="lg" className={classes.content}>
-                        <Grid item spacing={1}>
+                <Container className={classes.root}>   
                             <ItemDetailContainer />
-                        </Grid>
-                    </Container>
-            </Grid>   
+                </Container>   
         </> 
+   
     )
 }

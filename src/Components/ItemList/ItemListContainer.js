@@ -3,19 +3,12 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
 import ItemList from './ItemList';
 import { firestore } from '../../firebase';
-import { Container, Divider} from '@material-ui/core';
+import { Container, Grid, Hidden} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '../Pages/Slider';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-    content: {
-
-        justifyContent: "center",
-        alignItems: "center",
-        flexGrow: 1,
-        height: '100vh',
-      },
     text: {
         marginTop: '2rem'
     }
@@ -47,6 +40,7 @@ const ItemListContainer = () =>{
 
             })
             setProductos(listado)
+            
         })
 
       } else {
@@ -61,18 +55,23 @@ const ItemListContainer = () =>{
           })
           setProductos(listadoFiltrado)
         })}}, [id])
-      
-        console.log(productos)
+
 
       if(productos.length!== 0 && !id){
         return(
-            <Container maxWidth="lg" className={classes.content}>
-                    <Slider productos={productos}/>
-                    <Divider />
-                    <Typography component="h1" variant="h6" noWrap align='center' className={classes.text}> Productos </Typography>
-                    <ItemList lista={productos}/>
-                
-            </Container>
+            <>
+                {/* <Container maxWidth="lg" className={classes.content}> */}
+                <Grid item xs={12} justify='center' align='center'>
+                    <Hidden xsDown={true}>
+                        <Slider lista={productos} />
+                    </Hidden>
+                {/* </Grid>
+                <Grid item xs={12}> */}
+                        <Typography component="h1" variant="h6" noWrap justify='center' className={classes.text}> Productos </Typography>
+                        <ItemList lista={productos}/>
+                </Grid>
+                </>
+            // </Container>
         )
         } 
         else if (productos.length!== 0 && !!id){

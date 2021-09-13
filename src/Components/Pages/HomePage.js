@@ -5,21 +5,24 @@ import { Container, Grid } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
-    content: {
+    root: {
         flexGrow: 1,
         height: '100vh',
-        justifyContent: 'center'
+        justifyContent: 'center',
+
+        padding: theme.spacing(0, 6, 0, 1) ,
+        [theme.breakpoints.down('sm')]: {
+            padding:  theme.spacing(0, 2, 0, 1),
+            },
       },
-      appBarSpacer: theme.mixins.toolbar,
       
 }))
 export default function HomePage() {
     const classes = useStyles()
     return (
-        <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-                <Container maxWidth="lg" className={classes.content}>
-                    <Grid container spacing={1}>
+        <main>
+                <Container maxWidth="lg" className={classes.root}>
+                    <Grid container justify = "center" spacing={1}>
                         <ItemListContainer />
                     </Grid>
                 </Container>

@@ -1,4 +1,4 @@
-import Box from '@material-ui/core/Box';
+import {Grid, Paper} from '@material-ui/core';
 import React, {useState} from 'react';
 import ItemCount from '../ItemList/ItemCount';
 import {Link} from 'react-router-dom';
@@ -8,14 +8,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
-    box:{
+    content:{
         display: 'flex',
         justifyContent: 'center' 
     },
     button: {
         backgroundColor: '#34A512'
     },
-
+    paper: {
+        padding: theme.spacing(2),
+        [theme.breakpoints.down('sm')]: {
+              maxWidth: 280,
+          },
+      }
 }))
 
 export default function ItemDetail({detail}) {
@@ -37,10 +42,10 @@ export default function ItemDetail({detail}) {
     }
  
         return (
-            <Box className={classes.box}>
+            <Grid item xs={12} className={classes.content} >
                 {(detail.id) && 
-                    <div>
-                        <img src={detail.pictureURL} alt='Imagen del producto' />
+                    <Paper className={classes.paper} elevation={3}>
+                        <img src={detail.pictureURL} alt='Imagen del producto' style={{width: '100%'}}/>
                         <h1> {detail.title} </h1>
                         <p style={{fontSize: '16px'}}>{detail.description}</p>
                         <h3> Precio: ${detail.price} </h3>
@@ -58,8 +63,8 @@ export default function ItemDetail({detail}) {
 
                             <ItemCount id={detail.id} stock={detail.stock} initial={0} onAdd={onAdd} />
                         }
-                    </div>
+                    </Paper>
                 }
-            </Box>
+            </Grid>
         )
 }

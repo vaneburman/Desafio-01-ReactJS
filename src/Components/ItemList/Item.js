@@ -10,20 +10,27 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        margin: '0 auto'
+    },
+    content: {
       maxWidth: 345,
       verticalAlign: 'middle',
       transform: 'translateZ(0)',
       boxShadow: '0 0 1px rgba(0, 0, 0, 0.5)',
       backfaceVisibility: 'hidden',
-      mozOsxFontSmoothing: 'grayscale',
-      transitionDuration: '0.5s',
-      transitionProperty: 'transform'
+      [theme.breakpoints.down('md')]: {
+        maxWidth: 280,
+        },
+      
     },
     media: {
       height: 200
     },
     paper: {
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
+      [theme.breakpoints.down('md')]: {
+            maxWidth: 280,
+        },
     }
   })
 );
@@ -33,10 +40,10 @@ export default function Item({producto}) {
     const classes = useStyles();
 
     return (
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} sm={5} md={6} lg={4} className={classes.root}>
                 <li key={producto.id} style={{listStyle: 'none', width: 300}}>
                     <Paper className={classes.paper} elevation={3}>
-                        <Card className={classes.root}>
+                        <Card className={classes.content}>
                             <CardMedia
                                 className={classes.media}
                                 image={producto.pictureURL}

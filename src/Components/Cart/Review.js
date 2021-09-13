@@ -21,17 +21,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Review() {
   const classes = useStyles();
-  const { cart } = useCart();
-
-  let precioTotal = cart.reduce((sum, value) => 
-      (typeof value.item.price == "number" ? sum + value.item.price : sum),0)
-
-
+  const { cart, totalPrice } = useCart();
 
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        Order summary
+        El resumen de tu compra
       </Typography>
       <List disablePadding>
         {cart.map((i) => (
@@ -43,7 +38,7 @@ export default function Review() {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            {precioTotal}
+            {totalPrice}
           </Typography>
         </ListItem>
       </List>
