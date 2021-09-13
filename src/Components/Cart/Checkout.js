@@ -36,8 +36,8 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   layout: {
     width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: 'auto',
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Tus Datos', 'Detalles de pago', 'Orden de Compra'];
+const steps = ['Tus Datos', 'Pago', 'Resumen'];
 
 
 export default function Checkout() {

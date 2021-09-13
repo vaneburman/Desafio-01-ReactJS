@@ -8,7 +8,7 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import OrdenContainer from '../Cart/OrdenContainer';
 import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     tablecontainer:{
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
     link:{
         color: 'white',
+        textDecoration: 'none'
     },
     button: {
         backgroundColor: '#34A512',
@@ -110,16 +111,21 @@ export default function CartPage() {
         return (
             <>
                 <div className={classes.appBarSpacer} />
-                    <Grid container justify = "center">   
-                        <Container maxWidth="lg" className={classes.content}>
-                            <h1> Carrito Vacío </h1>
-                            <Link to='/' style={{color: 'white'}}>
-                                <Button variant="contained" color='primary' className={classes.button}>
-                                    Volver al inicio  <AiOutlineHome />
-                                </Button>
-                            </Link> 
-                        </Container>
+                    <Container maxWidth="lg" className={classes.root}>
+                        <Grid container justify = "center" align='center' spacing={8}>   
+                            <Grid item xs={12} >
+                                <Typography variant='h6'> Carrito Vacío </Typography> 
+                            </Grid>
+                            <Grid item xs={12} >
+                                <Link to='/' className={classes.link}>
+                                    <Button variant="contained" color='primary' className={classes.button}>
+                                        Volver al inicio 
+                                        <AiOutlineHome />
+                                    </Button>
+                                </Link> 
+                            </Grid>
                     </Grid>
+                </Container>
             </>
         )
     }

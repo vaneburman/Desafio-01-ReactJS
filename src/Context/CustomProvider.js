@@ -33,6 +33,7 @@ const CustomProvider = ({children}) => {
 
     const clear = () => {
         setCart([])
+        
     }
 
     
