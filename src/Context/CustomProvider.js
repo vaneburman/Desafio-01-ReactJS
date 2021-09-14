@@ -40,12 +40,10 @@ const CustomProvider = ({children}) => {
    
 
     const totalCart = ()=> {
-        console.log('este es el cart en total cart', cart)
         let total = cart.reduce((sum, value) => 
                  (typeof value.item.price == "number" ? sum + (value.item.price * value.quantity) : sum),0
     )
         setTotalPrice(total)
-        console.log('este es el total de setTotal', totalPrice, 'este es total antes del set', total)
     }
         
     

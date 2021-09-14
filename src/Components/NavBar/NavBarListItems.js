@@ -106,7 +106,7 @@ export const NavBarListItems = (
 export const SecondaryListItems = (
   <div>
     <ListSubheader inset>Cuenta</ListSubheader>
-    <ListItemLink to="/" primary="Mis Datos" icon={<PeopleIcon />} />
+    <ListItemLink to="/user" primary="Mis Datos" icon={<PeopleIcon />} />
     <ListItemLink to="/Cart" primary="Carrito" icon={<ShoppingCartIcon />} />
   
   </div>

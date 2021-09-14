@@ -46,7 +46,7 @@ export default function CartPage() {
     const classes = useStyles()
 
 
-    if(cart.length > 0){
+    
         return (
             <>
                 <div className={classes.appBarSpacer} />
@@ -59,22 +59,6 @@ export default function CartPage() {
                     </Container>
                 </>
         )
-    } else {
-        return (
-            <>
-                <div className={classes.appBarSpacer} />
-                    <Grid container justify = "center">   
-                        <Container maxWidth="lg" className={classes.content}>
-                            <h1> Carrito Vacío </h1>
-                            <Link to='/' style={{color: 'white'}}>
-                                <Button variant="contained" color='primary' className={classes.button}>
-                                    Volver al inicio  <AiOutlineHome />
-                                </Button>
-                            </Link> 
-                        </Container>
-                    </Grid>
-            </>
-        )
-    }
+    } 
     
-}
+

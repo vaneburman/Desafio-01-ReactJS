@@ -18,7 +18,7 @@ button: {
 
  const AddressForm = ({handleError}) => {
   const classes = useStyles();
-  const { newBuyer } = useOC();
+  const { newBuyer, buyer } = useOC();
   const [name,setName] = useState("")
   const [phone,setPhone] = useState("")
   const [email,setEmail] = useState("")
@@ -53,7 +53,7 @@ button: {
       }
   }); 
   useEffect(() => {
-      if(confirm){
+      if(confirm && !buyer){
         firestore.collection('buyers').add({
           name: name,
           email: email,
@@ -82,6 +82,7 @@ button: {
             label='Nombre Completo'
             fullWidth
             autoComplete='Name'
+            defaultValue={buyer.name}
             onChange={saveName}
           />
         </Grid>
@@ -94,6 +95,7 @@ button: {
             type='email'
             fullWidth
             autoComplete='email'
+            defaultValue={buyer.email}
             onChange={saveEmail}
           />
         </Grid>
@@ -106,6 +108,7 @@ button: {
             type='number'
             fullWidth
             autoComplete='Phone'
+            defaultValue={buyer.phone}
             onChange={savePhone}
           />
         <Grid item xs={12}>
