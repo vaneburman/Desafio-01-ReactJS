@@ -10,19 +10,16 @@ export const OCContext = createContext();
 
 const OCProvider = ({children}) => {
     const { Provider } = OCContext; 
-    const { cart, totalPrice } = useCart(); 
-    const [OC, setOC] = useState({});
+    const { totalPrice } = useCart(); 
     const [IDBuyer, setIDBuyer] = useState('');
-    const [buyer, setBuyer] = useState({})
-    const [idOC, setidOC] = useState("")
+    const [buyer, setBuyer] = useState({});
+    const [idOC, setidOC] = useState("");
 
     
     const findBuyer = (id) => {
         setIDBuyer(id)
     }
 
-    // const precioTotal = cart.reduce((sum, value) => 
-    //         (typeof value.item.price == "number" ? sum + value.item.price : sum),0)
 
     const newBuyer = (id) => {
         firestore.collection('buyers').doc(id).get()
@@ -42,7 +39,6 @@ const OCProvider = ({children}) => {
             return {id: i.item.id, title: i.item.title, UnitPrice: i.item.price, quantity: i.quantity}
     })
 
-        console.log('esta es la data final', buyer)
         const orden = {
             buyer: buyer,
             item: itemCart,
@@ -64,11 +60,10 @@ const OCProvider = ({children}) => {
     
     const ContextValue = {
         findBuyer,
+        IDBuyer,
         newOC,
-        OC, 
         idOC,
         buyer,
-        IDBuyer, 
         newBuyer
     }
  

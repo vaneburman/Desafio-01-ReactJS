@@ -1,18 +1,15 @@
 import {useState, useEffect} from 'react';
 import useCart from '../../Context/useCart';
-import Loading from '../Loading';
-import Box from '@material-ui/core/Box';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import useOC from '../../Context/useOC';
-import { Typography } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { Redirect } from 'react-router';
 
 
 
-export default function OrdenContainer({}) {
-    const {cart, totalPrice, clear} = useCart();
+export default function OrdenContainer() {
+    const {cart, totalPrice } = useCart();
     const {newOC, idOC, buyer} = useOC();
-    // const [comprador, setComprador] = useState(false);
     const [seg, setSeg] = useState(5);
  
 
@@ -36,11 +33,6 @@ export default function OrdenContainer({}) {
     
     return (
         <Box display='flex' justify='center'>
-            {/* {idOC.length>0 ?
-                <Checkout id={idOC} />
-            :
-                <Loading />
-            } */}
             <>
                      <Alert severity="success">
                         <AlertTitle>Success</AlertTitle>
@@ -59,7 +51,6 @@ export default function OrdenContainer({}) {
 
                          
                      </Alert>
-
            </>
         </Box>
     )

@@ -1,19 +1,11 @@
-import {useState} from 'react';
-import Boton from '../Cart/Boton';
-import { Container, Button, Grid } from '@material-ui/core';
-import { TableContainer, Paper, TableCell, Table, TableHead, TableRow, TableBody, IconButton } from '@material-ui/core';
-import useCart from '../../Context/useCart';
-import { AiOutlineHome } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import OrdenContainer from '../Cart/OrdenContainer';
+import React from 'react';
+import { Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
 import Checkout from '../Cart/Checkout';
 
 const useStyles = makeStyles((theme) => ({
     tablecontainer:{
         width: '90%', 
-        // margin: 50 
     },
     link:{
         color: 'white',
@@ -42,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function CartPage() {
-    const { cart } = useCart();
     const classes = useStyles()
 
 

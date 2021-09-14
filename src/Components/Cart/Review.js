@@ -1,10 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import useCart from '../../Context/useCart';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+const Review = () => {
   const classes = useStyles();
   const { cart, totalPrice } = useCart();
 
@@ -45,3 +42,5 @@ export default function Review() {
     </>
   );
 }
+
+export default Review

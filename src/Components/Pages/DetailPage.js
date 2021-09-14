@@ -22,7 +22,7 @@ export default function DetailPage() {
         <>
             <div className={classes.appBarSpacer} />
                 <Container className={classes.root}>   
-                            <ItemDetailContainer />
+                        <ItemDetailContainer />
                 </Container>   
         </> 
    

@@ -1,6 +1,8 @@
 import React, {useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 
-
-
 export default function ItemCount(props) {
     
    
@@ -25,17 +25,18 @@ export default function ItemCount(props) {
         width: '4rem',
         textAlign: "center"}
 
-    //para actualizar y controlar el contador de productos    
     
     const [Count, setCount] = useState(props.initial);
+    const [ open, setOpen ] = useState(false);
 
 
-    //defino las funciones que voy a usar para el contador y para los botones
+
     const sumarContador = () => {
         if (Count < props.stock) {
             setCount(Count + 1)
         } else {
-            alert('La Cantidad supera el stock disponible');
+            setOpen(true);
+
         }
     }
 
@@ -50,12 +51,12 @@ export default function ItemCount(props) {
     const Confirmar = () => {
         if(props.stock > 0){
             props.onAdd(Count)
-           
         }
     }
-       
-    
-    //acá dispongo que el componente me muestre un solo botón si aún no agregué items al contador, y que me despliegue el contador propiamente dicho cuando ya tenga al menos un item para agregar al carrito.
+
+    const handleClose = (event) => {    
+        setOpen(false);
+      };
 
     if(Count === props.initial & props.stock > 0){
     return (
@@ -85,6 +86,12 @@ export default function ItemCount(props) {
                 </div>
                 <div>
                     <Button onClick={Confirmar} variant="outlined" style= {{color: '#34A512', borderColor: '#34A512'}} >Confirmar</Button>
+                    {open && 
+                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} >
+                            <Alert onClose={handleClose}severity="error">
+                            La Cantidad seleccionada supera el stock disponible
+                            </Alert>
+                        </Snackbar>}
                 </div>
             </div>
         )

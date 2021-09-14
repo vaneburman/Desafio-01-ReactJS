@@ -36,13 +36,13 @@ export default function ItemDetailContainer() {
 
     if(!!producto.id){
   return(
-        <Grid container justify='center' spacing={1}>
+        <Grid item xs={12} justifyContent="center" align='center'>
                 <ItemDetail detail={producto}/>
         </Grid>
     )
   } else {
     return( 
-        <Grid item justify='center' >
+        <Grid item xs={12} justifyContent="center" align='center'>
             <Loading />
         </Grid>
     )

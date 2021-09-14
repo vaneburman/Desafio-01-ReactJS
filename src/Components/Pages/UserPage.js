@@ -1,12 +1,9 @@
-import {useEffect} from 'react';
-import Boton from '../Cart/Boton';
+import React from 'react'
 import { Container, Button, Grid } from '@material-ui/core';
-import { TableContainer, Paper, TableCell, Table, TableHead, TableRow, TableBody, IconButton } from '@material-ui/core';
-import useCart from '../../Context/useCart';
+import { TableContainer, Paper, TableCell, Table, TableHead, TableRow, TableBody } from '@material-ui/core';
 import useOC from '../../Context/useOC';
-import { AiOutlineHome } from 'react-icons/ai';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import { Link } from 'react-router-dom';
-import OrdenContainer from '../Cart/OrdenContainer';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
@@ -45,10 +42,6 @@ export default function UserPage() {
     const { buyer } = useOC();
     const columns = ['Nombre', 'Email', 'Teléfono']
     const classes = useStyles()
-
-    // useEffect(() => {
-    //     totalCart()
-    // }, [cart])
 
     if(Object.keys(buyer).length !== 0){
         return (
@@ -92,7 +85,7 @@ export default function UserPage() {
                                 <Link to='/' className={classes.link}>
                                     <Button variant="contained" color='primary' className={classes.button}>
                                         Volver al inicio 
-                                        <AiOutlineHome />
+                                        <HomeOutlinedIcon />
                                     </Button>
                                 </Link> 
                             </Grid>

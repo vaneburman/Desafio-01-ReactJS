@@ -5,19 +5,12 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { firestore } from '../../firebase';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+
 import useOC from '../../Context/useOC';
 
-const useStyles = makeStyles((theme) => ({
-button: {
-  marginTop: theme.spacing(3),
-  marginLeft: theme.spacing(1),
-},
-}))
 
  const AddressForm = ({handleError}) => {
-  const classes = useStyles();
+
   const { newBuyer, buyer } = useOC();
   const [name,setName] = useState("")
   const [phone,setPhone] = useState("")
@@ -110,17 +103,14 @@ button: {
             autoComplete='Phone'
             defaultValue={buyer.phone}
             onChange={savePhone}
-          />
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color='secondary' name='saveAddress' value='yes' />}
-            label='Guardar la información para futuras compras'
-          />
-        </Grid>
-      </Grid>
-      <Button onClick={confirmar} className={classes.button} variant="contained" color='primary'>
-        Confirmar datos
-      </Button>
+            />
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox color='secondary' name='saveAddress' value='yes' onChange={confirmar}/>}
+                label='Guardar la información para futuras compras'
+              />
+            </Grid>
+          </Grid>
       
       </Grid>
     </form>

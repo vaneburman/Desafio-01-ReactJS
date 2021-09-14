@@ -22,7 +22,7 @@ export default function HomePage() {
     return (
         <main>
                 <Container maxWidth="lg" className={classes.root}>
-                    <Grid container justify = "center" spacing={1}>
+                    <Grid container justifyContent="center" spacing={1}>
                         <ItemListContainer />
                     </Grid>
                 </Container>

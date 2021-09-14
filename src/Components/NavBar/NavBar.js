@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import CartWidget from './CartWidget';
 import { NavBarListItems, SecondaryListItems } from './NavBarListItems';
 import SinCopete from './SinCopete';
-import './NavBar.css';
-import clsx from 'clsx';
+import useCart from '../../Context/useCart';
+import useOC from '../../Context/useOC';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import { AppBar, Toolbar, Drawer, Typography, Divider, IconButton, Badge, List} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import useCart from '../../Context/useCart';
-import useOC from '../../Context/useOC';
+
 
 
 const drawerWidth = 240;
@@ -19,14 +19,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100%',
   },
-  // toolbarIcon: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'flex-end',
-  //   padding: '0 8px',
-  //   ...theme.mixins.toolbar,
-  // },
-  
   appBar: {
       width: '100%',
       zIndex: theme.zIndex.drawer + 1,
@@ -44,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
                         duration: theme.transitions.duration.enteringScreen,
                     }),
       },
-
   menuButton: {
     marginLeft: 3,
     marginRight: 36
@@ -87,18 +78,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
    },
   appBarSpacer: theme.mixins.toolbar,
-  // content: {
-  //   flexGrow: 1,
-  //   height: '100vh',
-  //   overflow: 'auto',
-  // },
-  // container: {
-  //   paddingTop: theme.spacing(4),
-  //   paddingBottom: theme.spacing(4),
-  // },
-  // fixedHeight: {
-  //   height: 240,
-  // },
 }));
 
 const NavBar = () =>{

@@ -1,29 +1,21 @@
-import {useState, useEffect} from 'react';
+import {useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+import {Paper, Stepper, Step, StepLabel, Button, Link, Typography } from '@material-ui/core';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import {firestore} from '../../firebase';
-import Loading from '../Loading';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import OrdenContainer from './OrdenContainer';
-import useCart from '../../Context/useCart';
+
 
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://linkedin.com/in/vanesaburman">
+        Vanesa Burman
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -71,8 +63,7 @@ const steps = ['Tus Datos', 'Pago', 'Resumen'];
 
 
 export default function Checkout() {
-  const classes = useStyles()
-  const {cart} = useCart();
+  const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [error, setError] = useState(false)
 
@@ -84,7 +75,7 @@ export default function Checkout() {
       case 0:
         return <AddressForm handleError={handleError}/>;
       case 1:
-        return <PaymentForm />;
+        return <PaymentForm handleError={handleError}/>;
       case 2:
         return <Review />;
       default:
@@ -102,7 +93,7 @@ export default function Checkout() {
 
   const handleResetForm = ()=> {
     setActiveStep(0);
-    // setError()
+
   }
 
   return (
@@ -145,7 +136,7 @@ export default function Checkout() {
                     <>
                       <Alert severity="error">
                           <AlertTitle>Error</AlertTitle>
-                          Ingrese sus datos correctamente para continuar 
+                          Ingrese los datos correctamente para continuar 
                       </Alert>
                       <Button onClick={handleResetForm} className={classes.button}>
                         Atrás

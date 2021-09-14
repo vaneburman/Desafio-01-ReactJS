@@ -5,11 +5,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       '& > * + *': {
         marginLeft: theme.spacing(2),
       },
     },
-    color: {
+    spinner: {
         color: '#C73966',
     }
   }));
@@ -19,7 +21,7 @@ export default function Loading() {
 
     return (
         <div className={classes.root}>
-            <CircularProgress className={classes.color} size={'5rem'} thickness={2.5}/>
+            <CircularProgress className={classes.spinner} size={'5rem'} thickness={2.5}/>
         </div>
     )
 }
