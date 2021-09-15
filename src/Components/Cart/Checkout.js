@@ -7,6 +7,7 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import OrdenContainer from './OrdenContainer';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 
@@ -65,7 +66,8 @@ const steps = ['Tus Datos', 'Pago', 'Resumen'];
 export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+  const [ alert, setAlert ] = useState(false);
 
   const handleError = (formError)=>{
     setError(formError)
@@ -85,6 +87,10 @@ export default function Checkout() {
   
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    if(activeStep === 0 && !error){
+      setActiveStep(activeStep);
+      setAlert(true)
+    }
   };
 
   const handleBack = () => {
@@ -93,8 +99,13 @@ export default function Checkout() {
 
   const handleResetForm = ()=> {
     setActiveStep(0);
+    setError(false);
 
   }
+
+  const handleClose = (event) => {    
+    setAlert(false);
+  };
 
   return (
     <>
@@ -130,8 +141,9 @@ export default function Checkout() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1  ? 'Place order' : 'Next'}
                   </Button>
+                  
                   ) : (
                     <>
                       <Alert severity="error">
@@ -144,6 +156,12 @@ export default function Checkout() {
                     </>
                   )
                   }
+                  {alert && 
+                        <Snackbar open={alert} autoHideDuration={4000} onClose={handleClose} >
+                            <Alert onClose={handleClose}severity="error">
+                            Ingrese todos los datos para continuar
+                            </Alert>
+                        </Snackbar>}
                 </div>
               </>
             )}

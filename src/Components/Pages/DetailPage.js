@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         justifyContent: 'center',
         [theme.breakpoints.down('sm')]: {
-            maxWidth: 280,
+            maxWidth: 330,
+            marginLeft: theme.spacing(6) + 1
             },
       },
     appBarSpacer: theme.mixins.toolbar

@@ -9,10 +9,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: theme.spacing(5) + 1
+            },
+    },
     text: {
-        marginTop: '2rem'
+        marginTop: '2rem',
+        
+          },
     }
-}))
+    ))
 
 
 const ItemListContainer = () =>{
@@ -59,10 +67,9 @@ const ItemListContainer = () =>{
       if(productos.length!== 0 && !id){
         return(
             <>
-                <Grid item xs={12} justifyContent="center" align='center'>
-                    <Hidden xsDown={true}>
+                <Grid item xs={12} justifyContent="center" align='center' className={classes.root}>
+                   
                         <Slider lista={productos} />
-                    </Hidden>
             
                         <Typography component="h1" variant="h6" noWrap justify='center' className={classes.text}> Productos </Typography>
                         <ItemList lista={productos}/>

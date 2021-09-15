@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
        minWidth: '20rem',
        width: '80%',
        height: '15rem',
+       marginBottom: '5rem'  
      },
   },
 
@@ -36,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
     objectPosition: 'center center',
     position: 'relative',
     [theme.breakpoints.down('md')]: {      
-      height: '60%',  
+      height: '15rem',  
       minWidth: '15rem',
-      width: '100%'  
+      width: '100%',
     },
     
   },

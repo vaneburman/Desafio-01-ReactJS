@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         backgroundColor: '#34A512',
-        margin: '0 2rem',
+        margin: '1rem 3rem',
         [theme.breakpoints.down('sm')]: {
-            margin:  theme.spacing(2),
+            margin:  theme.spacing(5),
             },
     },
     root: {

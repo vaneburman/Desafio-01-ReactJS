@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    ...theme.mixins.drawer,
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
@@ -69,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
                 width: theme.spacing(7) + 1,
           },
+    ...theme.mixins.drawer,
   },
    toolbar: {
      display: 'flex',
@@ -78,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
    },
   appBarSpacer: theme.mixins.toolbar,
+  drawerSpacer: theme.mixins.drawer
 }));
 
 const NavBar = () =>{
@@ -85,6 +88,7 @@ const NavBar = () =>{
     const {idOC} = useOC();
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    
 
     const handleDrawerOpen = () => {
       setOpen(true);

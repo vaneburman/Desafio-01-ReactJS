@@ -5,7 +5,7 @@ import { Card, CardActions, CardContent, CardMedia, Typography, Button, Paper, G
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: '0 auto'
+        margin: 0
     },
     content: {
       maxWidth: 345,
@@ -36,7 +36,7 @@ export default function Item({producto}) {
 
     return (
         <Grid item xs={12} sm={5} md={6} lg={4} className={classes.root}>
-                <li key={producto.id} style={{listStyle: 'none', width: 300}}>
+            <li key={producto.id} style={{listStyle: 'none', width: 300 }}>
                     <Paper className={classes.paper} elevation={3}>
                         <Card className={classes.content}>
                             <CardMedia
@@ -59,8 +59,9 @@ export default function Item({producto}) {
                             </CardActions>
                         </Card>
                     </Paper>
-                </li>
+            </li>
         </Grid>
+       
     )
     
 }

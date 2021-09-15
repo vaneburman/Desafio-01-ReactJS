@@ -30,7 +30,7 @@ import useOC from '../../Context/useOC';
   }
 
   const validacion = () => {
-    if(name.trim().length && phone.trim().length && email.trim().length){
+    if(name.trim().length && phone.toString().trim().length && email.trim().length){
         return true
     }else {
         return false
@@ -38,12 +38,15 @@ import useOC from '../../Context/useOC';
 }
   const confirmar = useCallback((event) => {
       event.preventDefault()
-      if(validacion()){
+      if(event.target.checked){
+        if(validacion()){
           handleError(false);
           setConfirm(true)
-      }else{
-          handleError(true)
+        }else{
+            handleError(true)
+        }
       }
+     
   }); 
   useEffect(() => {
       if(confirm && !buyer){

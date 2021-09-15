@@ -12,11 +12,13 @@ const useStyles = makeStyles((theme) => ({
 
         padding: theme.spacing(0, 6, 0, 1) ,
         [theme.breakpoints.down('sm')]: {
-            padding:  theme.spacing(0, 2, 0, 1),
-            },
-      },
+            Width: 320,
+            marginLeft: theme.spacing(2) + 1
+        },
+              },
+      }
       
-}))
+))
 export default function HomePage() {
     const classes = useStyles()
     return (
