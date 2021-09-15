@@ -81,6 +81,10 @@ Este Provider de contexto se utiliza para todo el estado del carrito. El Context
 ### OCProvider
 Este Provider nos provee la información correspondiente de la OC y el proceso de Checkout del comprador. El Context Value contiene los estados correspondientes a los datos de la OC y el comprador, como objetos, y de los ID para identificar estos documentos en sus correspondientes colecciones, como strings. También se agregan métodos necesarios para actualizar estos estados. 
 
+### Gif de navegación
+
+[Ver Online](https://drive.google.com/drive/folders/1tW6u42kBl4hvS-YkxZUa77BC4VRO3qGy?usp=sharing)
+
 ## Sugerencias/consultas
 
 Si tienen alguna consulta sobre el repositorio o el proyecto, generen un issue en  [Vanesa Burman](https://github.com/ryan-harris) o contacten directamente en vanesa.burman@hotmail.com.

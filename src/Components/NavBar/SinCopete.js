@@ -9,10 +9,12 @@ const useStyles = makeStyles(() => ({
         textDecoration: 'none'
     },
     text:{
-        color: '#DAF7A6', 
+        color: '#34A512', 
+        filter: 'drop-shadow(3px 0px 0px #E8E8E8)',
         marginRight: '2rem', 
-        fontWeight: 700, 
-        fontSize: '1.5 rem'
+        fontWeight: 500, 
+        fontSize: '2rem',
+        fontFamily: `'Barriecito', cursive`
     }
 }))
 

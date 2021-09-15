@@ -49,15 +49,20 @@ const useStyles = makeStyles((theme) => ({
   },
   stepper: {
     padding: theme.spacing(3, 0, 5),
+    color: '#34A512'
   },
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
+    
   },
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    backgroundColor: '#34A512',
+    height: '2rem'
   },
+ 
 }));
 
 const steps = ['Tus Datos', 'Pago', 'Resumen'];
@@ -68,6 +73,7 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = useState(0);
   const [error, setError] = useState(false);
   const [ alert, setAlert ] = useState(false);
+
 
   const handleError = (formError)=>{
     setError(formError)
@@ -84,14 +90,11 @@ export default function Checkout() {
         throw new Error('Unknown step');
     }
   }
-  
+
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
-    if(activeStep === 0 && !error){
-      setActiveStep(activeStep);
-      setAlert(true)
-    }
-  };
+      setActiveStep(activeStep + 1);
+        }
+  ;
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -117,7 +120,7 @@ export default function Checkout() {
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
-              <Step key={label}>
+              <Step key={label} >
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}

@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
       },
   menuButton: {
     marginLeft: 3,
-    marginRight: 36
+    marginRight: 36,
+    color: '#34A512'
   },
   
   menuButtonHidden: {
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
      alignItems: 'center',
      justifyContent: 'flex-end',
      padding: theme.spacing(0, 3, 0, 0),
+    background: 'linear-gradient(to right, #FFE995, #E8E8E8)',
     ...theme.mixins.toolbar,
    },
   appBarSpacer: theme.mixins.toolbar,

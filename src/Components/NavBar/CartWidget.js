@@ -7,8 +7,8 @@ const CartWidget = ()=> {
     
     return(
     <>
-        <Link to='/cart' style={{color: 'white'}}>
-            <ShoppingCartOutlinedIcon />
+        <Link to='/cart' style={{color: '#34A512', filter: 'drop-shadow(-3px 0px 0px #E8E8E8)'}}>
+            <ShoppingCartOutlinedIcon fontSize={'medium'}/>
         </Link>
         
     </>

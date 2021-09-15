@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
       height: 200
     },
     paper: {
+        backgroundColor: '#FAF5E1',
       padding: theme.spacing(2),
       [theme.breakpoints.down('md')]: {
             maxWidth: 280,

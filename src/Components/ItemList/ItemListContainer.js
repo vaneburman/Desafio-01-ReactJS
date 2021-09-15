@@ -4,7 +4,7 @@ import Loading from '../Loading';
 import ItemList from './ItemList';
 import Slider from '../Pages/Slider';
 import { firestore } from '../../firebase';
-import { Grid, Hidden, Typography} from '@material-ui/core';
+import { Grid,  Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
