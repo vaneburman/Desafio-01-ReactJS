@@ -1,17 +1,98 @@
-import ItemCount from "./ItemCount"
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Loading from '../Loading';
+import ItemList from './ItemList';
+import Slider from '../Pages/Slider';
+import { firestore } from '../../firebase';
+import { Grid,  Typography} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const ItemListContainer = ({greeting}) =>{
-    return(
-    <>
-        <p style={{fontSize: 20, color: "black"}}> Lista: {greeting} </p>
-        <div style={{display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center'}}>
-            <ItemCount stock={5} id={2}/>
-            <ItemCount stock={12} id={3}/>
-        </div>
-    </>
-    )
-    };
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: theme.spacing(5) + 1
+            },
+    },
+    text: {
+        marginTop: '2rem',
+        
+          },
+    }
+    ))
+
+
+const ItemListContainer = () =>{
+    const classes = useStyles()
+    const [productos, setProductos]= useState([]);
+    const {id} = useParams(); 
+
+      useEffect(() => {
+        const collection = firestore.collection('productos')
+
+        if(!id){
+          
+        const query = collection.get()
+
+        query.then((resultados)=>{
+
+            const listado = []
+            resultados.forEach((documento) => {
+                const id = documento.id
+                const data = documento.data()
+                const data_final = {id, ...data}
+
+                listado.push(data_final)
+
+            })
+            setProductos(listado)
+            
+        })
+
+      } else {
+          const queryFiltrado = collection.where("category", "==", id).get()
+          queryFiltrado.then((categoria)=>{
+              const listadoFiltrado = []
+              categoria.forEach((documento) => {
+                  const id = documento.id;
+                  const data = documento.data();
+                  const data_final = {id, ...data}
+                  listadoFiltrado.push(data_final)
+          })
+          setProductos(listadoFiltrado)
+        })}}, [id])
+
+
+      if(productos.length!== 0 && !id){
+        return(
+            <>
+                <Grid item xs={12} justifyContent="center" align='center' className={classes.root}>
+                   
+                        <Slider lista={productos} />
+            
+                        <Typography component="h1" variant="h6" noWrap justify='center' className={classes.text}> Productos </Typography>
+                        <ItemList lista={productos}/>
+                </Grid>
+            </>
+
+        )
+        } 
+        else if (productos.length!== 0 && !!id){
+            return(
+                <Grid item xs={12} justifyContent="center" align='center'>
+                        <ItemList lista={productos}/>
+                    
+                </Grid>
+            )
+        }
+     else {
+        return( 
+            <Grid item xs={12} justifyContent="center" align='center'>
+                <Loading />
+            </Grid>
+        )
+     }
+    }
 
 export default ItemListContainer

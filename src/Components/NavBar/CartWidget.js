@@ -1,16 +1,15 @@
 import React from 'react';
-import { AiOutlineShoppingCart } from "react-icons/ai";
-
-
-
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { Link } from 'react-router-dom';
 
 
 const CartWidget = ()=> {
     
-
     return(
     <>
-        <AiOutlineShoppingCart />
+        <Link to='/cart' style={{color: '#34A512', filter: 'drop-shadow(-3px 0px 0px #E8E8E8)'}}>
+            <ShoppingCartOutlinedIcon fontSize={'medium'}/>
+        </Link>
         
     </>
     )

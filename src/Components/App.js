@@ -1,19 +1,19 @@
 import React from 'react';
-import Header from "./Header";
-import ItemListContainer from './ItemList/ItemListContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import StoreProvider from '../store/StoreProvider';
+import { BrowserRouter } from 'react-router-dom'
+import AppRouter from './AppRouter/AppRouter';
+import CustomProvider from '../Context/CustomProvider';
+import OCProvider from '../Context/OCProvider';
 
 const App = () => 
-    <>
-        <StoreProvider>
-            <React.Fragment>
+    <CustomProvider>
+        <OCProvider>
+            <BrowserRouter>
                 <CssBaseline />
-                <Header/>
-                <ItemListContainer greeting="Aquí van las listas de Items"/>
-            </React.Fragment>
-        </StoreProvider>
-    </>
+                <AppRouter />
+            </BrowserRouter>
+        </OCProvider>
+    </CustomProvider>
 
 export default App
 

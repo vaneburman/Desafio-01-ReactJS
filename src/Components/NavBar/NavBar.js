@@ -1,133 +1,167 @@
-import React from 'react';
+import {useState} from 'react';
 import CartWidget from './CartWidget';
-import MyLink from './MyLink';
+import { NavBarListItems, SecondaryListItems } from './NavBarListItems';
 import SinCopete from './SinCopete';
-import './NavBar.css';
+import useCart from '../../Context/useCart';
+import useOC from '../../Context/useOC';
 import { makeStyles } from '@material-ui/core/styles';
-import { MenuItems } from './MenuItems'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import clsx from 'clsx';
+import { AppBar, Toolbar, Drawer, Typography, Divider, IconButton, Badge, List} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuList from '@material-ui/core/MenuList';
-
-import { useStore } from "../../store/StoreProvider";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
 
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex', 
-    flexGrow: 1,
+    display: 'flex',
+    width: '100%',
   },
+  appBar: {
+      width: '100%',
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(['width', 'margin'], {
+                        easing: theme.transitions.easing.sharp,
+                        duration: theme.transitions.duration.leavingScreen,
+                }),
+      position: 'fixed'
+      },
+  appBarShift: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+                        easing: theme.transitions.easing.sharp,
+                        duration: theme.transitions.duration.enteringScreen,
+                    }),
+      },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginLeft: 3,
+    marginRight: 36,
+    color: '#34A512'
+  },
+  
+  menuButtonHidden: {
+    display: 'none',
   },
   title: {
     flexGrow: 1,
   },
-  paper: {
-    marginRight: theme.spacing(2),
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
   },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    ...theme.mixins.drawer,
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(8) + 1,
+    [theme.breakpoints.down('md')]: {
+                width: theme.spacing(7) + 1,
+          },
+    ...theme.mixins.drawer,
+  },
+   toolbar: {
+     display: 'flex',
+     alignItems: 'center',
+     justifyContent: 'flex-end',
+     padding: theme.spacing(0, 3, 0, 0),
+    background: 'linear-gradient(to right, #FFE995, #E8E8E8)',
+    ...theme.mixins.toolbar,
+   },
+  appBarSpacer: theme.mixins.toolbar,
+  drawerSpacer: theme.mixins.drawer
 }));
 
-
 const NavBar = () =>{
-  //del estilo
-  const classes = useStyles();
-  const anchorRef = React.useRef(null);
-  //del estado global
-  const { products } = useStore();
+    const {cart} = useCart();
+    const {idOC} = useOC();
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    
 
-  const [open, setOpen] = React.useState(false);
-
-  //En esta línea voy sumando la cantidad (de los objetos dentro del array de products) de todos los artículos que se agregan al carrito (estado global)
-  let itemsTotales = products.reduce((sum, value) => (typeof value.cantidad == "number" ? sum + value.cantidad : sum), 0);
-  //chequeo que me los haya sumado   
-  console.log(itemsTotales);
-
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
+    const handleDrawerClose = () => {
       setOpen(false);
-    }
-  }
+    };
 
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
+    const itemsTotales = cart.reduce((sum, value) => 
+    (typeof value.quantity == "number" ? sum + value.quantity : sum),0)
 
   
-
-
     return(
-        <div className={classes.root}>
-          <AppBar position="static" style={{backgroundColor: '#34A512'}}>
-
-            <Toolbar>
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <div>
-                  <Button
-                    ref={anchorRef}
-                    aria-controls={open ? 'menu-list-grow' : undefined}
-                    aria-haspopup="true"
-                    onClick={handleToggle}
-                    style={{color:'white'}}
-                  >
-                    <MenuIcon />
-                  </Button>
-                  <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                    {({ TransitionProps, placement }) => (
-                      <Grow
-                      {...TransitionProps}
-                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                      >
-                        <Paper>
-                          <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                              <MyLink links={MenuItems}/>
-                            </MenuList>
-                          </ClickAwayListener>
-                        </Paper>
-                      </Grow>
-                    )}
-                  </Popper>
-                </div>
-              </IconButton>
-              <Typography variant='h6' className={classes.title}>
-                <SinCopete />
-              </Typography>
-              <Button color="inherit"><CartWidget /></Button>
-              <p style={{fontSize: '1rem'}}>{itemsTotales}</p>
-            </Toolbar>
-          </AppBar>
-        </div>
-      );
-    
+      <div className={clsx(classes.root && classes.appBarSpacer)}>
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              <SinCopete />
+            </Typography>
+            <IconButton color="inherit">
+              {!idOC ? 
+              ( <Badge badgeContent={itemsTotales} color="secondary">
+                  <CartWidget />
+                </Badge>
+              ) : (
+                <CartWidget />
+              )
+              }
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+            <List >
+                {NavBarListItems}
+            </List>                  
+          <Divider />
+          <Divider />
+            <List>
+              {SecondaryListItems}
+            </List>                  
+          <Divider />
+        </Drawer>
+      </div>
+  );
 }
 export default NavBar
